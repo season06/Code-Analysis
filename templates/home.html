@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <title>code analysis</title>
+  <style>
+  html {
+    font-family: "Arial";
+  }
+
+  body {
+  margin:0;
+  padding:0;
+  overflow: hidden;
+  }
+    #menu {
+      width: 100%;
+      height: 50px;
+      background-color: black;
+      text-align: center;
+    }
+    .menu_container {
+      margin: auto;
+      width: 100%;
+      padding-top: 10px;
+    }
+    #logo {
+      width: 300px;
+      color: white;
+      float: left;
+      font-size: 1.5em;
+      margin-left: 40%;
+    }
+    .button_input{
+      margin-top: 10px;
+      margin-right: 10px !important;
+    }
+    .button {
+      margin-right: 0.5%;
+      float: right;
+      font-size: 18px;
+      width: 100px;
+      border: none;
+      border-radius: 4px;
+      padding: 5px;
+      background-color: #e8e8e8;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+    .button span {
+      transition: 0.5s;
+    }
+
+    .button span::after {
+      content: "\00bb";
+      position: absolute;
+      right: 0px;
+      transition: 0.5s;
+      opacity: 0;
+    }
+
+    .button:hover span {
+      position: relative;
+      padding-right: 25px;
+    }
+
+    .button:hover span::after {
+      opacity: 1;
+      right: 0;
+    }
+    .clear {
+      clear: both;
+    }
+    #code {
+      width: 95%;
+      height: 500px;
+      resize: none;
+      background-color: black;
+      color: white;
+      border:4px white solid;
+      font-size: 20px;
+      outline: none;
+    }
+    #diagram {
+      width: 95%;
+      height: 500px;
+      resize: none;
+      background-color: white;
+      color: black;
+      border:4px black solid;
+      font-size: 20px;
+      outline: none;
+      cursor: auto;
+    }
+    #box_section{
+      width: 100%;
+      height: 800px;
+      overflow: hidden;
+    }
+    .container{
+      width: 100%;
+      margin:auto;
+      background: black;
+    }
+    .show_box{
+      position:relative;
+      width:100%;
+      height:800px;
+    }
+    .left_section{
+      margin-left: 0.5%;
+      float:left;
+      width:49.2%;
+      height:800px;
+      background-color: #5D5D5D;
+      text-align:center;
+    }
+    .right_section{
+      position: absolute;
+      background-color: #ffffff !important;
+      right: 0.5%;
+    }
+    .box_header{
+      margin:10px 20px;
+      color:white;
+      float: left;
+    }
+    .box_header_right{
+      color:black;
+    }
+    .img_box{
+      width: 95%;
+      height: 800px;
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="menu">
+    <div class="menu_container">
+      <div id="logo">
+        Software Analysis Tool
+      </div>
+  <!-- <button onclick="myFunction()" id="runCode" class="button" type="button" name="runbutton"><span>Run</span></button> -->
+  <a href="/">
+    <button onclick="clearbox()" class="button" type="button" name="clear"><span>clear</span></button>
+  </a>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+
+<section id="box_section" class="clear">
+  <div class="container">
+    <div class="show_box">
+      <div class="left_section">
+        <h3 class="box_header">CODE</h3>
+          <form action="/image" method="POST">
+          <input class="button button_input" type="submit" name="submit" value="submit">
+          <div class="code_text">
+              {% csrf_token %}
+            <textarea id="code" name="code">{{code_field}}</textarea>
+          </div>
+          </form>
+      </div>
+      <div class="left_section right_section">
+        <h3 class="box_header box_header_right">Flow Diagram</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,7 @@
+digraph flow {
+	node [shape=ellipse]
+	0 [label=start]
+	node [shape=box]
+	1 [label=123]
+	0 -> 1
+}
