@@ -11,7 +11,8 @@ def analysis(request):
     if request.POST:
         model = Analysis(request.POST['code'])
         if model.code!='':
-            code = model.code
+            code = str(model.code)
+            model.code = model.code.replace("\r","").replace("\t","").strip()
             model.generate_diagram()
             img = 'diagram.png'
             return render(request, 'diagram.html', {'image': img, 'code_field': code})
